@@ -1,15 +1,20 @@
-var mykey = config.OMDBAPI;
+const mykey = config.OMDBAPI;
+const input = document.querySelector('input');
 
-const fetchData = async () => {
+const fetchData = async searchTerm => {
 	const response = await axios.get(`http://www.omdbapi.com/`, {
 		params: {
 			apikey: mykey,
-			s: 'avengers',
+			s: searchTerm,
 		},
-	});
-	console.log(response.data);
-	const data = await response.json();
-	return data;
+    });
+
+    return response.data.Search;
 };
 
-fetchData();
+const onInput = async (event) => {
+    const movies = await fetchData(event.target.value);
+    console.log(movies);
+};
+
+input.addEventListener('input', debounce(onInput, 500));
