@@ -1,4 +1,4 @@
-const OMDBAPI_KEY = config.OMDBAPI;
+// const OMDBAPI_KEY = config.OMDBAPI;
 const autoCompleteConfig = {
 	renderOption(movie) {
 		const imgSrc = movie.Poster === 'N/A' ? '' : movie.Poster;
@@ -13,7 +13,7 @@ const autoCompleteConfig = {
 	async fetchData(searchTerm) {
 		const response = await axios.get('http://www.omdbapi.com/', {
 			params: {
-				apikey: 'd9835cc5',
+				apikey: OMDBAPI_KEY,
 				s: searchTerm,
 			},
 		});
@@ -34,6 +34,7 @@ createAutoComplete({
 		onMovieSelect(movie, document.querySelector('#left-summary'), 'left');
 	},
 });
+
 createAutoComplete({
 	...autoCompleteConfig,
 	root: document.querySelector('#right-autocomplete'),
@@ -48,7 +49,7 @@ let rightMovie;
 const onMovieSelect = async (movie, summaryElement, side) => {
 	const response = await axios.get('http://www.omdbapi.com/', {
 		params: {
-			apikey: 'd9835cc5',
+			apikey: 'a4f7c82e',
 			i: movie.imdbID,
 		},
 	});
