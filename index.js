@@ -1,4 +1,3 @@
-// const OMDBAPI_KEY = config.OMDBAPI;
 const autoCompleteConfig = {
 	renderOption(movie) {
 		const imgSrc = movie.Poster === 'N/A' ? '' : movie.Poster;
